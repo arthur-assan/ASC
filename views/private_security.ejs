@@ -1,0 +1,111 @@
+<%- include partials/header.ejs %>
+<body class="">
+    <div class="page">
+      <div class="page-main">
+       <%- include partials/nav.ejs %>
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <div class="page-header">
+              <h1 class="page-title">
+                G7 Security Service
+              </h1>
+            </div>
+            <div class="row row-cards">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body p-3 text-center">
+                    <div class="h1 m-0"><%= case_data.length %></div>
+                    <div class="text-muted mb-4">Total Cases</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body p-3 text-center">
+                    <div class="h1 m-0"><%= case_data2.length %></div>
+                    <div class="text-muted mb-4">Major Cases</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body p-3 text-center">
+                    <div class="h1 m-0"><%= case_data.length - case_data2.length %></div>
+                    <div class="text-muted mb-4">Minor Cases</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+               <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Accuser's Statement </h3>
+                </div>
+                <div class="card-body">
+                  <form method="post" action="/case">
+                    <div class="form-group">
+                      <label class="form-label">Accuser</label>
+                      <input type="text" class="form-control" name="accuser" placeholder="Enter Accuser's Name" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Contact</label>
+                      <input type="text" class="form-control" name="contact" placeholder="+233 56 899 0984" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Statement</label>
+                      <textarea class="form-control" name="statement" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">Case Classification</div>
+                        <div class="custom-controls-stacked">
+                          <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" name="case_class" value="major" >
+                            <span class="custom-control-label">Major</span>
+                          </label>
+                          <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" name="case_class" value="minor" checked>
+                            <span class="custom-control-label">Minor</span>
+                          </label>
+                        </div>
+                      </div>
+                    <div class="form-footer">
+                      <button class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Recent Uploads</h3>
+                      </div>
+                      <div class="card-body">
+                        <% for(var i=0; i < case_data.length; i++) { %>
+                        <article class="media">
+                          <div class="media-body">
+                            <div class="content">
+                              <p>
+                                  <%= case_data[i].statement %>
+                              </p>
+                            </div>
+                            <p class="h6">
+                              <%= case_data[i].accuser %> <small class="float-right text-muted"><%= case_data[i].case_class %> . <%= case_data[i].createdAt.toDateString() %></small>
+                            </p>
+                          </div>
+                        </article>
+                        <hr>
+                        <%}%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include partials/footer.ejs %>

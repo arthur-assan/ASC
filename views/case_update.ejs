@@ -1,0 +1,107 @@
+<%- include partials/header.ejs %>
+<body class="">
+    <div class="page">
+      <div class="page-main">
+        <div class="header py-4">
+          <div class="container">
+            <div class="d-flex">
+              <a class="header-brand" href="./index.html">
+                <img src="" class="header-brand-img" alt="ASC">
+              </a>
+              <div class="d-flex order-lg-2 ml-auto">
+                <div class="dropdown">
+                  <a href="/signout" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default"></span>
+                      <span class="btn btn-dark btn-sm">Sign out</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                <span class="header-toggler-icon"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-3 ml-auto">
+                <form class="input-icon my-3 my-lg-0">
+                  <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
+                  <div class="input-icon-addon">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg order-lg-first">
+                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                  <li class="nav-item">
+                    <a href="./docs/index.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <div class="page-header">
+              <h1 class="page-title">
+                Police Service 
+              </h1>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-7">
+                  <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title"> Case Review</h3>
+                  </div>
+                  <div class="card-body">
+                    <h5>Name: </h5> <%= case_view.name %>
+                    <h5>Contact: </h5><%= case_view.contact %>
+                    <hr>
+                    <h4>STATEMENT</h4>
+                    <p><%= case_view.statement %></p>
+                    <hr>
+                    <h4>INVESTIGATION</h4>
+                    <p><%= case_view.investigation %></p>
+                  </div>
+                </div>
+
+                </div>
+
+                <div class="col-md-5">
+                  <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title"> Update Case</h3>
+                  </div>
+                  <div class="card-body">
+                    <form method="post" action="/case_update/<%= case_view._id %>">
+                      <div class="form-group">
+                        <label class="form-label">Investigation Report</label>
+                        <textarea class="form-control" name="investigation" rows="5"></textarea>
+                      </div>
+                      <div class="form-footer text-center">
+                        <button class="btn btn-dark ">Submit</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+                </div>
+
+              </div>
+               
+                        
+            </div>
+          </div>
+        </div>
+      </div>
+
+          </div>
+        </div>
+      </div>
+      <% include partials/footer.ejs %>

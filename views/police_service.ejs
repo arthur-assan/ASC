@@ -1,0 +1,67 @@
+<%- include partials/header.ejs %>
+<body class="">
+    <div class="page">
+      <div class="page-main">
+       <%- include partials/nav.ejs %>
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <div class="page-header">
+              <h1 class="page-title">
+                Police Service
+              </h1>
+            </div>
+
+             <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Forwarded Cases</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap">
+                      <thead>
+                        <tr>
+                          <th>Name of Accusser</th>
+                          <th>Contact Information</th>
+                          <th>Date Taken</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <% for(var i=0; i < major_case_data.length; i++) { %>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <%= major_case_data[i].accuser %>
+                          </td>
+                          <td>
+                             <%= major_case_data[i].contact %>
+                          </td>
+                          <td>
+                             <%= major_case_data[i].createdAt.toDateString() %>
+                          </td>
+                          <td>
+                            <a class="btn btn-cyan btn-sm" href="/case_view/<%= major_case_data[i]._id %>"> 
+                              <i class="fe fe-file-text mr-2"></i>
+                              View
+                            </a>
+
+                             <a class="btn btn-orange btn-sm" href="/case_update/<%= major_case_data[i]._id %>"> 
+                              <i class="fe fe-edit mr-2"></i>
+                              Update
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <%}%>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          </div>
+        </div>
+      </div>
+      <%- include partials/footer.ejs %>
